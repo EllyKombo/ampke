@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %}Home — AMPKen{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="overline">Association of Medical Physics of Kenya</span>
+        <h1>Advancing Medical Physics<br><span style="color:var(--gold-bright)">Across Kenya</span></h1>
+        <p class="lead">
+          Dedicated to improving patient outcomes through education, clinical research, 
+          and upholding the highest professional standards in medical physics.
+        </p>
+        <div class="hero-actions">
+          <a href="{{ url_for('about') }}" class="btn btn-gold">About AMPKen</a>
+          <a href="{{ url_for('membership') }}" class="btn btn-outline-white">Join Us</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">50+</div>
+            <div class="stat-label">Members</div>
+          </div>
+          <div>
+            <div class="stat-num">15+</div>
+            <div class="stat-label">Hospitals</div>
+          </div>
+          <div>
+            <div class="stat-num">2024</div>
+            <div class="stat-label">Term</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="{{ url_for('static', filename='img/image1.jpg') }}" alt="Medical Physics in Kenya">
+      </div>
+    </div>
+  </div>
+
+<!-- HOME HERO BANNER -->
+<section style="padding:1rem 0;background:var(--bg-soft);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="reveal" style="background:var(--gold-bright);border-radius:var(--r-lg);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem">
+      <div style="display:flex;align-items:center;gap:1rem;color:var(--navy)">
+        <i class="fa-solid fa-calendar-star" style="font-size:1.5rem"></i>
+        <div>
+          <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.1rem">Featured Event</div>
+          <div style="font-family:var(--font-h);font-size:1.1rem;font-weight:700;line-height:1.2">AMPKen 2026 Conference: Advancing Equitable Cancer Care in Kenya</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1.5rem">
+        <div style="text-align:right">
+          <div style="font-size:.8rem;font-weight:700;color:var(--navy)">5th – 7th Nov 2026</div>
+          <div style="font-size:.7rem;color:rgba(13, 27, 42, .7)">KUTRRH, Nairobi</div>
+        </div>
+        <a href="#about" class="btn btn-primary" style="padding:.4rem 1rem;font-size:.75rem">Event Details</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION STRIP -->
+<section class="section" style="padding:3.5rem 0;background:var(--bg-soft);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="two-col reveal" style="gap:3rem;align-items:center">
+      <div>
+        <span class="overline">Our Mission</span>
+        <h2>Promoting the safe application of physics in medicine</h2>
+        <div class="gold-rule"></div>
+        <p style="color:var(--text-body);font-size:.95rem;line-height:1.8;margin-bottom:1.25rem">
+          AMPKen is Kenya's premier professional body for medical physicists, 
+          committed to advancing clinical standards in radiotherapy, diagnostic radiology, 
+          and nuclear medicine for the benefit of all patients.
+        </p>
+        <a href="{{ url_for('about') }}" class="btn btn-primary">Learn More</a>
+      </div>
+      <div>
+        <img src="{{ url_for('static', filename='img/image2.jpg') }}" alt="Medical Physics team"
+             style="width:100%;border-radius:var(--r-lg);box-shadow:var(--shadow-md)">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">What We Do</span>
+      <h2>Supporting medical physicists in Kenya</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="card reveal">
+        <div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="feature-title">Continuing Education</div>
+        <div class="feature-body">CPD workshops, seminars, and accredited training programs for practicing physicists.</div>
+      </div>
+      <div class="card reveal">
+        <div class="feature-icon"><i class="fa-solid fa-flask"></i></div>
+        <div class="feature-title">Research Support</div>
+        <div class="feature-body">Grants and collaboration opportunities to advance medical physics research across Kenya.</div>
+      </div>
+      <div class="card reveal">
+        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="feature-title">Patient Safety</div>
+        <div class="feature-body">Advocating for the highest quality assurance standards in radiation medicine.</div>
+      </div>
+      <div class="card reveal">
+        <div class="feature-icon"><i class="fa-solid fa-handshake"></i></div>
+        <div class="feature-title">Professional Network</div>
+        <div class="feature-body">Connecting physicists across Kenya's hospitals, cancer centres and universities.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<div class="cta-strip reveal">
+  <div class="container">
+    <h2>Become a member of AMPKen</h2>
+    <p>Join a network of dedicated professionals advancing healthcare in Kenya.</p>
+    <a href="{{ url_for('membership') }}" class="btn btn-gold">View Membership Options</a>
+  </div>
+</div>
+
+{% endblock %}

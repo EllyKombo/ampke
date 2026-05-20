@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}About — AMPKen{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <div class="container">
+    <span class="overline">About Us</span>
+    <h1>What is AMPKen?</h1>
+    <p class="lead">The Association of Medical Physics of Kenya promotes physics in medicine, improves healthcare quality, and supports the professional development of medical physicists across Kenya.</p>
+  </div>
+</div>
+
+<!-- MISSION / VISION -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+
+      <div class="reveal">
+        <div class="card" style="height:100%">
+          <span class="overline">Our Mission</span>
+          <h3 style="margin-top:.35rem;margin-bottom:.75rem">Advancing medical physics in Kenya</h3>
+          <div class="gold-rule"></div>
+          <p style="font-size:.9rem;line-height:1.8;color:var(--text-body)">
+            To advance the field of medical physics in Kenya through education, research, and professional 
+            development — ensuring the highest standards in the application of physics to medicine.
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="card" style="height:100%">
+          <span class="overline">Our Vision</span>
+          <h3 style="margin-top:.35rem;margin-bottom:.75rem">A leading voice in medical physics</h3>
+          <div class="gold-rule"></div>
+          <p style="font-size:.9rem;line-height:1.8;color:var(--text-body)">
+            To be a leading organisation in medical physics, recognised for excellence, innovation and 
+            professional integrity at the national and regional level.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="overline">Our Values</span>
+      <h2>What we stand for</h2>
+    </div>
+    <div class="values-row reveal">
+      <div class="value-chip"><i class="fa-solid fa-star"></i> Excellence</div>
+      <div class="value-chip"><i class="fa-solid fa-lightbulb"></i> Innovation</div>
+      <div class="value-chip"><i class="fa-solid fa-scale-balanced"></i> Integrity</div>
+      <div class="value-chip"><i class="fa-solid fa-link"></i> Collaboration</div>
+      <div class="value-chip"><i class="fa-solid fa-briefcase"></i> Professionalism</div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIVES + IMAGE -->
+<section class="section" style="background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <div class="section-head reveal">
+          <span class="overline">Our Objectives</span>
+          <h2>What we aim to achieve</h2>
+        </div>
+        <div class="obj-list reveal">
+          <div class="obj-item"><div class="obj-num">1</div><span>Promote the application of physics in medicine and biology</span></div>
+          <div class="obj-item"><div class="obj-num">2</div><span>Encourage research and development in medical physics</span></div>
+          <div class="obj-item"><div class="obj-num">3</div><span>Facilitate continuing education and professional development</span></div>
+          <div class="obj-item"><div class="obj-num">4</div><span>Foster collaboration between medical physicists and other healthcare professionals</span></div>
+          <div class="obj-item"><div class="obj-num">5</div><span>Advocate for the highest standards of patient care and radiation safety</span></div>
+        </div>
+        <div style="margin-top:2rem" class="reveal">
+          <a href="{{ url_for('membership') }}" class="btn btn-primary">Join AMPKen</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <img src="{{ url_for('static', filename='img/path-to-about-image.jpeg') }}"
+             alt="Medical Physics work"
+             style="width:100%;border-radius:var(--r-lg);box-shadow:var(--shadow-md)">
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

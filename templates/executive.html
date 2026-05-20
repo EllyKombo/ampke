@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Executive Board — AMPKen{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <div class="container">
+    <span class="overline">Leadership</span>
+    <h1>Executive Committee 2026</h1>
+    <p class="lead">The professionals leading AMPKen with commitment and vision during the 2026 term.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="exec-grid">
+
+      <!-- Chairman — spans full width -->
+      <div class="exec-card exec-card-chairman reveal">
+        <img src="{{ url_for('static', filename='img/path-to-chairman-image.jpg') }}" alt="Mr. Aggrey Wakhule"
+          class="exec-photo">
+        <div class="exec-body">
+          <div class="exec-role">Chairman</div>
+          <div class="exec-name">Mr. Aggrey Wakhule</div>
+          <div class="exec-divider"></div>
+          <div class="exec-term">Jan 2026 – Dec 2026</div>
+        </div>
+      </div>
+
+      <!-- Row 2: Vice-Chairmen (cols 1 & 2) -->
+      <div class="exec-card reveal">
+        <img src="{{ url_for('static', filename='img/path-to-vice-chairman-image.jpg') }}" alt="Mr. Loreh Peter"
+          class="exec-photo">
+        <div class="exec-body">
+          <div class="exec-role">1st Vice-Chairman</div>
+          <div class="exec-name">Mr. Loreh Peter</div>
+          <div class="exec-divider"></div>
+          <div class="exec-term">Jan 2026 – Dec 2026</div>
+        </div>
+      </div>
+
+      <div class="exec-card reveal">
+        <img src="{{ url_for('static', filename='img/path-to-chairman-assistant-image.jpg') }}" alt="Mr. Evans Ojwak"
+          class="exec-photo">
+        <div class="exec-body">
+          <div class="exec-role">2nd Vice-Chairman</div>
+          <div class="exec-name">Mr. Evans Ojwak</div>
+          <div class="exec-divider"></div>
+          <div class="exec-term">Jan 2026 – Dec 2026</div>
+        </div>
+      </div>
+
+      <!-- Empty spacer to push row 2 to cols 1-2 only -->
+      <div class="hide-mobile"></div>
+
+      <!-- Row 3: Secretary, Asst Secretary, Treasurer -->
+      <div class="exec-card reveal">
+        <img src="{{ url_for('static', filename='img/path-to-secretary-image.jpg') }}" alt="Mr. Otieno Kapis"
+          class="exec-photo">
+        <div class="exec-body">
+          <div class="exec-role">Secretary General</div>
+          <div class="exec-name">Mr. Otieno Kapis</div>
+          <div class="exec-divider"></div>
+          <div class="exec-term">Jan 2026 – Dec 2026</div>
+        </div>
+      </div>
+
+      <div class="exec-card reveal">
+        <img src="{{ url_for('static', filename='img/path-to-secretary-assistant-image.jpg') }}"
+          alt="Mr. Bernard Kiprotich" class="exec-photo">
+        <div class="exec-body">
+          <div class="exec-role">Assistant Secretary General</div>
+          <div class="exec-name">Mr. Bernard Kiprotich</div>
+          <div class="exec-divider"></div>
+          <div class="exec-term">Jan 2026 – Dec 2026</div>
+        </div>
+      </div>
+
+      <div class="exec-card reveal">
+        <img src="{{ url_for('static', filename='img/path-to-treasurer-image.jpg') }}" alt="Miss Eunita Chepchumba"
+          class="exec-photo">
+        <div class="exec-body">
+          <div class="exec-role">Treasurer</div>
+          <div class="exec-name">Miss Eunita Chepchumba</div>
+          <div class="exec-divider"></div>
+          <div class="exec-term">Jan 2026 – Dec 2026</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
