@@ -937,9 +937,9 @@ textarea.form-input {
    PAGE HERO (inner pages)
    ======================= */
 .page-hero {
-   background: var(--bg-soft);
-   border-bottom: 1px solid var(--border);
-   padding: 4rem 0 3rem;
+   background: var(--navy);
+  border-bottom: 2px solid var(--gold-bright);
+  padding: 4rem 0 3rem;
 }
 
 .page-hero h1 {
