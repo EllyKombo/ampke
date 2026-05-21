@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Membership — AMPKen{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <div class="container">
+    <span class="overline">Join AMPKen</span>
+    <h1>Membership Categories</h1>
+    <p class="lead">Become part of Kenya's leading medical physics association and contribute to national standards, professional growth, and patient care.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <div class="plans-grid reveal">
+
+      <!-- Ordinary -->
+      <div class="plan-card">
+        <div class="plan-icon"><i class="fa-solid fa-user-check"></i></div>
+        <div class="plan-name">Ordinary Membership</div>
+        <div class="plan-sub">For qualified, practising medical physicists.</div>
+        <div class="plan-features">
+          <div class="plan-feat-item"><span class="check">✓</span><span>Full voting rights at general meetings</span></div>
+          <div class="plan-feat-item"><span class="check">✓</span><span>Access to CPD workshops and training</span></div>
+          <div class="plan-feat-item"><span class="check">✓</span><span>AMPKen publications and journal access</span></div>
+          <div class="plan-feat-item"><span class="check">✓</span><span>Eligibility for executive positions</span></div>
+          <div class="plan-feat-item"><span class="check">✓</span><span>Discounted conference registration</span></div>
+        </div>
+        <a href="{{ url_for('contacts') }}" class="btn btn-outline" style="width:100%;justify-content:center">Apply Now</a>
+      </div>
+
+      <!-- Associate (Featured) -->
+      <div class="plan-card featured">
+        <div class="plan-badge">Most Common</div>
+        <div class="plan-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="plan-name">Associate Membership</div>
+        <div class="plan-sub">For allied health professionals in related fields.</div>
+        <div class="plan-features">
+          <div class="plan-feat-item"><span class="check">✓</span><span>Attend all AMPKen events and workshops</span></div>
+          <div class="plan-feat-item"><span class="check">✓</span><span>Access to AMPKen publications</span></div>
+          <div class="plan-feat-item"><span class="check">✓</span><span>Professional networking opportunities</span></div>
+          <div class="plan-feat-item"><span class="check">✓</span><span>Mentorship from senior members</span></div>
+        </div>
+        <a href="{{ url_for('contacts') }}" class="btn btn-gold" style="width:100%;justify-content:center">Apply Now</a>
+      </div>
+
+      <!-- Honorary -->
+      <div class="plan-card">
+        <div class="plan-icon"><i class="fa-solid fa-award"></i></div>
+        <div class="plan-name">Honorary Membership</div>
+        <div class="plan-sub">Awarded to distinguished contributors to medical physics.</div>
+        <div class="plan-features">
+          <div class="plan-feat-item"><span class="check">✓</span><span>Recognition of outstanding contributions</span></div>
+          <div class="plan-feat-item"><span class="check">✓</span><span>All rights of ordinary membership</span></div>
+          <div class="plan-feat-item"><span class="check">✓</span><span>Invitation to special AMPKen events</span></div>
+          <div class="plan-feat-item"><span class="check">✓</span><span>Lifetime achievement acknowledgement</span></div>
+        </div>
+        <a href="{{ url_for('contacts') }}" class="btn btn-outline" style="width:100%;justify-content:center">Learn More</a>
+      </div>
+
+    </div>
+
+    <!-- Policy note -->
+    <div class="card reveal" style="margin-top:2rem;display:flex;gap:1rem;align-items:flex-start;border-left:3px solid var(--gold-bright)">
+      <i class="fa-solid fa-circle-info" style="color:var(--gold);margin-top:3px;flex-shrink:0"></i>
+      <div>
+        <div style="font-weight:600;font-size:.9rem;color:var(--text-h);margin-bottom:.4rem">Membership Policy</div>
+        <p style="font-size:.85rem;color:var(--text-mute);line-height:1.75">
+          Members who resign, are expelled, or whose subscriptions are three or more years in arrears 
+          automatically cease to be members. Reinstatement is at the discretion of the executive committee.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

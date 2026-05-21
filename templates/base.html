@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AMPKen — Association of Medical Physics of Kenya{% endblock %}</title>
+    <meta name="description"
+        content="AMPKen advances medical physics in Kenya through education, research and professional development.">
+
+    <!-- External Web Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% block extra_css %}{% endblock %}
+
+    <!-- Dynamic Runtime Layout Engine CSS -->
+    <style>
+        /* Ensure footer pushes to bottom if inner content is short */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Fixed unified system menu wrapper */
+        .global-nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Ticker Layout & Presentation Structure */
+        .ticker-bar {
+            background: #111111;
+            color: #ffffff;
+            padding: 0.55rem 0;
+            font-size: 0.82rem;
+            font-weight: 500;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Overrides hardcoded fixed layouts from previous setups */
+        .site-header {
+            background: #ffffff;
+            position: relative !important;
+            top: 0 !important;
+            width: 100%;
+        }
+
+        /* Pure CSS Infinite Hardware-Accelerated Marquee Engine */
+        .ticker-inner {
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+        }
+
+        .ticker-track {
+            display: flex;
+            white-space: nowrap;
+            padding-left: 100%;
+            /* Delays first pass clean entry initialization */
+            animation: continuousTicker 30s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            padding-right: 4rem;
+            /* Safe whitespace boundary separator between alerts */
+        }
+
+        @keyframes continuousTicker {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            100% {
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+
+        /* Pause scrolling on hover action for readability access compliance */
+        .ticker-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* 
+       The Runtime Spacer: Uses JS computed '--nav-height' calculation.
+       Safely defaults to 125px if JavaScript loading is delayed.
+    */
+        main {
+            flex: 1;
+            padding-top: var(--nav-height, 125px) !important;
+            transition: padding-top 0.15s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- GLOBAL NAVIGATION BLOCK WRAPPER -->
+    <div class="global-nav-wrapper">
+
+        <!-- NEWS TICKER SECTION -->
+        <div class="ticker-bar">
+            <div class="container ticker-inner">
+                <div class="ticker-track">
+                    <div class="ticker-item"><i class="fa-solid fa-bullhorn"
+                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i> Register now for the 2026
+                        AMPKen Conference at KUTRRH, Nairobi!</div>
+                    <div class="ticker-item"><i class="fa-solid fa-bell"
+                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i> Membership renewal for the
+                        2026 term is now open.</div>
+                    <div class="ticker-item"><i class="fa-solid fa-award"
+                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i> Join our professional
+                        network to access unique CPD opportunities.</div>
+                    <!-- Duplicated tracks to seamlessly support high resolution viewport loops -->
+                    <div class="ticker-item"><i class="fa-solid fa-bullhorn"
+                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i> Register now for the 2026
+                        AMPKen Conference at KUTRRH, Nairobi!</div>
+                    <div class="ticker-item"><i class="fa-solid fa-bell"
+                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i> Membership renewal for the
+                        2026 term is now open.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVIGATION COMPONENT CONTAINER -->
+        <header class="site-header">
+            <div class="container header-inner">
+                <a href="{{ url_for('home') }}" class="logo">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="AMPKen Logo"
+                        onerror="this.style.display='none'">
+                    <span class="logo-text">AMP<span>Ken</span></span>
+                </a>
+
+                <nav class="main-nav" id="main-nav">
+                    <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                    <a href="{{ url_for('about') }}" class="nav-link">About</a>
+                    <a href="{{ url_for('executive') }}" class="nav-link">Executive</a>
+                    <a href="{{ url_for('membership') }}" class="nav-link">Membership</a>
+                    <a href="{{ url_for('news') }}" class="nav-link">News</a>
+                    <a href="{{ url_for('contacts') }}" class="nav-cta">Contact</a>
+                </nav>
+
+                <button class="hamburger" id="hamburger" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </header>
+    </div>
+
+    <!-- CONTAINER FOR INNER EXTENDED ROUTE CONTENT -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% if request.path in [url_for('home'), url_for('about'), url_for('news')] %}
+    <!-- GLOBAL CONFERENCE BANNER -->
+    <section style="padding:1.5rem 0 3.5rem;background:var(--bg-soft);border-top:1px solid var(--border)">
+        <div class="container">
+            <div class="reveal"
+                style="background:var(--navy);border-radius:var(--r-xl);overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;gap:0">
+
+                <!-- Left Content Column -->
+                <div style="padding:2.5rem 3rem">
+                    <div
+                        style="display:inline-flex;align-items:center;gap:.6rem;background:rgba(212,160,23,.15);border:1px solid rgba(212,160,23,.3);border-radius:50px;padding:.3rem 1rem;margin-bottom:1.25rem">
+                        <i class="fa-solid fa-calendar-days" style="color:var(--gold-bright);font-size:.75rem"></i>
+                        <span
+                            style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-bright)">Upcoming
+                            Conference</span>
+                    </div>
+
+                    <h2 style="color:#fff;font-size:1.35rem;line-height:1.35;margin-bottom:.75rem;max-width:560px">
+                        Advancing Equitable Cancer Care in Kenya:<br>
+                        <span style="color:var(--gold-bright)">The Role of Medical Physics in Radiation Medicine and
+                            Safety</span>
+                    </h2>
+
+                    <div
+                        style="display:flex;flex-wrap:wrap;gap:1.5rem;margin:.75rem 0 1.25rem;font-size:.85rem;color:rgba(255,255,255,.7)">
+                        <div style="display:flex;align-items:center;gap:.45rem">
+                            <i class="fa-solid fa-location-dot" style="color:var(--gold-bright)"></i>
+                            <span>KUTRRH, Nairobi, Kenya</span>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:.45rem">
+                            <i class="fa-solid fa-clock" style="color:var(--gold-bright)"></i>
+                            <span>5th – 7th November 2026</span>
+                        </div>
+                    </div>
+
+                    <p
+                        style="font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:1.5rem;max-width:520px">
+                        Join us for three days of cutting-edge science, clinical practice, and professional development.
+                        Kindly follow us on our social media platforms for updates.
+                    </p>
+
+                    <div style="display:flex;gap:.65rem;flex-wrap:wrap;align-items:center">
+                        <a href="https://www.instagram.com/medicalphysicske?igsh=Z3Uybng3a2wwNG00" target="_blank"
+                            rel="noopener"
+                            style="display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:var(--r-sm);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:.78rem;font-weight:500;transition:all .2s">
+                            <i class="fa-brands fa-instagram"></i> Instagram
+                        </a>
+                        <a href="https://www.facebook.com/groups/516009055411783/?ref=share&mibextid=KtfwRi"
+                            target="_blank" rel="noopener"
+                            style="display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:var(--r-sm);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:.78rem;font-weight:500;transition:all .2s">
+                            <i class="fa-brands fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://www.linkedin.com/groups/9211437" target="_blank" rel="noopener"
+                            style="display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:var(--r-sm);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:.78rem;font-weight:500;transition:all .2s">
+                            <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Accentuated Date Block -->
+                <div
+                    style="background:var(--gold-bright);padding:2.5rem 2rem;text-align:center;align-self:stretch;display:flex;flex-direction:column;justify-content:center;min-width:140px">
+                    <div
+                        style="font-family:var(--font-h);font-size:3.5rem;font-weight:700;color:var(--navy);line-height:1">
+                        5–7</div>
+                    <div
+                        style="font-size:.8rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem">
+                        NOV</div>
+                    <div style="font-size:1.1rem;font-weight:700;color:var(--navy);margin-top:.2rem">2026</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- COMPONENT: FOOTER CORE -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="{{ url_for('home') }}" class="logo">
+                        <span class="logo-text">AMP<span>Ken</span></span>
+                    </a>
+                    <p>Advancing the practice of medical physics in Kenya through education, research, and professional
+                        standards.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.facebook.com/groups/516009055411783/?ref=share&mibextid=KtfwRi"
+                            target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i
+                                class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/medicalphysicske?igsh=Z3Uybng3a2wwNG00" target="_blank"
+                            rel="noopener" class="social-btn" aria-label="Instagram"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/groups/9211437" target="_blank" rel="noopener"
+                            class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Site</h4>
+                    <div class="footer-links">
+                        <a href="{{ url_for('home') }}">Home</a>
+                        <a href="{{ url_for('about') }}">About AMPKen</a>
+                        <a href="{{ url_for('executive') }}">Executive Board</a>
+                        <a href="{{ url_for('membership') }}">Membership</a>
+                        <a href="{{ url_for('news') }}">News &amp; Events</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="#">Constitution</a>
+                        <a href="#">CPD Programs</a>
+                        <a href="#">Publications</a>
+                        <a href="{{ url_for('contacts') }}">Contact Us</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get in Touch</h4>
+                    <div class="footer-links">
+                        <a href="mailto:medicalphysicskenya@gmail.com">
+                            <i class="fa-solid fa-envelope"
+                                style="color:var(--gold-bright);margin-right:.4rem"></i>medicalphysicskenya@gmail.com
+                        </a>
+                        <a href="tel:+254722520197">
+                            <i class="fa-solid fa-phone" style="color:var(--gold-bright);margin-right:.4rem"></i>+254
+                            722 520197
+                        </a>
+                        <span><i class="fa-solid fa-location-dot"
+                                style="color:var(--gold-bright);margin-right:.4rem"></i>CTC-KNH, Hospital Rd,
+                            Nairobi</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 Association of Medical Physics of Kenya (AMPKen)</span>
+                <span>Nairobi, Kenya</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SYSTEM LAYOUT INTERACTION INJECTOR scripts -->
+    <script>
+        // Dynamic Realtime Global Navigation Height Observer
+        const navWrapper = document.querySelector('.global-nav-wrapper');
+
+        if (navWrapper && 'ResizeObserver' in window) {
+            const layoutObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    const measuredHeight = entry.borderBoxSize
+                        ? entry.borderBoxSize[0].blockSize
+                        : entry.target.getBoundingClientRect().height;
+
+                    // Rewrite layout token with real time window dimensions 
+                    document.documentElement.style.setProperty('--nav-height', `${measuredHeight}px`);
+                }
+            });
+            layoutObserver.observe(navWrapper);
+        }
+
+        // Hamburger Toggle Core Action
+        const toggleBtn = document.getElementById('hamburger');
+        const mainNav = document.getElementById('main-nav');
+        if (toggleBtn && mainNav) {
+            toggleBtn.addEventListener('click', () => mainNav.classList.toggle('open'));
+        }
+
+        // Active Context Route Highlight Feature
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            }
+        });
+
+        // Intersection Viewport Trigger Logic
+        const animationObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    animationObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(element => animationObserver.observe(element));
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

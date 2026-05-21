@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}News & Events — AMPKen{% endblock %}
+
+{% block content %}
+
+<!-- Ticker -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <div class="ticker-track">
+      <span class="ticker-item">&#9670; AGM 2024 — Annual General Meeting at CTC-KNH Nairobi</span>
+      <span class="ticker-item">&#9670; East African Radiotherapy Conference — Registrations Open</span>
+      <span class="ticker-item">&#9670; New 2024 QA Guidelines for Linacs Released</span>
+      <span class="ticker-item">&#9670; AMPKen Scholarship Applications Now Open</span>
+      <span class="ticker-item">&#9670; AGM 2024 — Annual General Meeting at CTC-KNH Nairobi</span>
+      <span class="ticker-item">&#9670; East African Radiotherapy Conference — Registrations Open</span>
+      <span class="ticker-item">&#9670; New 2024 QA Guidelines for Linacs Released</span>
+      <span class="ticker-item">&#9670; AMPKen Scholarship Applications Now Open</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="overline">Latest Updates</span>
+    <h1>News &amp; Events</h1>
+    <p class="lead">Stay informed with the latest announcements, research news, and upcoming events from AMPKen.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="news-layout">
+
+      <!-- Featured -->
+      <a href="#" class="news-main reveal">
+        <img src="{{ url_for('static', filename='img/image4.jpg') }}" alt="Annual Conference" class="news-main-img">
+        <div class="news-main-body">
+          <div class="news-date">
+            <span class="tag" style="margin-right:.6rem">Conference</span>October 12, 2024
+          </div>
+          <h2 class="news-headline" style="margin-top:.5rem">AMPKen Annual Scientific Conference — 2024 Highlights</h2>
+          <p class="news-excerpt">A record-breaking gathering with breakthrough research presentations and international guest speakers from across East Africa. Over 80 medical physicists convened at KNH for the two-day event.</p>
+          <span class="read-more">Read full story <i class="fa-solid fa-arrow-right fa-xs"></i></span>
+        </div>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="news-side">
+        <a href="#" class="news-card reveal">
+          <img src="{{ url_for('static', filename='img/image5.jpg') }}" alt="QA Guidelines" class="news-card-img">
+          <div class="news-card-body">
+            <div class="news-card-date"><span class="tag" style="margin-right:.4rem;font-size:.63rem">Guidelines</span>Oct 2024</div>
+            <div class="news-card-title">New QA Guidelines for Linacs Published</div>
+          </div>
+        </a>
+        <a href="#" class="news-card reveal">
+          <img src="{{ url_for('static', filename='img/image6.jpg') }}" alt="Scholarships" class="news-card-img">
+          <div class="news-card-body">
+            <div class="news-card-date"><span class="tag" style="margin-right:.4rem;font-size:.63rem">Grants</span>Aug 2024</div>
+            <div class="news-card-title">Scholarship Opportunities for Graduate Students</div>
+          </div>
+        </a>
+        <a href="#" class="news-card reveal">
+          <img src="{{ url_for('static', filename='img/Kenya.jpg') }}" alt="Conference registration" class="news-card-img">
+          <div class="news-card-body">
+            <div class="news-card-date"><span class="tag" style="margin-right:.4rem;font-size:.63rem">Events</span>Jul 2024</div>
+            <div class="news-card-title">East African Radiotherapy Conference</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

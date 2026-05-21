@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}Contact — AMPKen{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <div class="container">
+    <span class="overline">Get in Touch</span>
+    <h1>Contact AMPKen</h1>
+    <p class="lead">Questions about membership, events, or research collaboration? Our team is ready to assist.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-wrap">
+
+      <!-- Info -->
+      <div class="contact-panel reveal">
+        <span class="overline">Our Details</span>
+        <h3 style="color:#fff;margin:.4rem 0 1.5rem;font-family:var(--font-body);font-size:1.15rem;font-weight:600">Association of Medical Physics of Kenya</h3>
+
+        <div class="c-item">
+          <div class="c-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <div class="c-label">Address</div>
+            <div class="c-val">Medical Physics Section, CTC-KNH<br>Hospital Rd., P.O. Box 7674 – 00100 GPO<br>Nairobi, Kenya</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon-box"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-val"><a href="mailto:medicalphysicskenya@gmail.com">medicalphysicskenya@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon-box"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <div class="c-label">Phone</div>
+            <div class="c-val"><a href="tel:+254722520197">+254 722 520197</a></div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1)">
+          <div class="c-label" style="margin-bottom:.75rem">Follow Us</div>
+          <div style="display:flex;gap:.6rem">
+            <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div style="margin-top:1.75rem;border-radius:var(--r-md);overflow:hidden">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7979.791147588432!2d36.80032779497917!3d-1.3064424604186346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f111bf48f1495%3A0xf09c0c0e732fcd7b!2sKNH%20Cancer%20Treatment%20Centre!5e0!3m2!1sen!2ske!4v1689160901490!5m2!1sen!2ske"
+            width="100%" height="175" style="border:0;display:block" allowfullscreen="" loading="lazy" title="KNH Location"></iframe>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="contact-form-wrap reveal">
+        <span class="overline">Send a Message</span>
+        <h3 style="margin:.4rem 0 1.5rem;font-family:var(--font-body);font-size:1.15rem;font-weight:600;color:var(--text-h)">We will get back to you promptly</h3>
+        <form action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="first_name">First Name</label>
+              <input type="text" id="first_name" name="first_name" class="form-input" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="last_name">Last Name</label>
+              <input type="text" id="last_name" name="last_name" class="form-input" placeholder="Doe" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="jane@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <select id="subject" name="subject" class="form-input">
+              <option value="">Select a topic…</option>
+              <option>Membership Enquiry</option>
+              <option>Event / Conference</option>
+              <option>Research Collaboration</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea id="message" name="message" class="form-input" placeholder="How can we help?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:.75rem">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
