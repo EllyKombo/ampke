@@ -3,6 +3,41 @@
 
 {% block content %}
 
+<!-- SCHEMA MARKUP FOR GOOGLE LOGO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AMPKen",
+  "alternateName": "Association of Medical Physics of Kenya",
+  "url": "https://ampken.org",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://ampken.org/static/img/logo.png",
+    "width": 512,
+    "height": 512
+  },
+  "description": "AMPKen advances medical physics in Kenya through education, research and professional development.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "CTC-KNH, Hospital Rd",
+    "addressLocality": "Nairobi",
+    "addressCountry": "KE"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+254722520197",
+    "email": "medicalphysicskenya@gmail.com",
+    "contactType": "customer service"
+  },
+  "sameAs": [
+    "https://www.facebook.com/groups/516009055411783",
+    "https://www.instagram.com/medicalphysicske",
+    "https://www.linkedin.com/groups/9211437"
+  ]
+}
+</script>
+
 <!-- HERO -->
 <section class="hero">
   <div class="container">
@@ -28,7 +63,7 @@
             <div class="stat-label">Hospitals</div>
           </div>
           <div>
-            <div class="stat-num">2024</div>
+            <div class="stat-num">2026</div>
             <div class="stat-label">Term</div>
           </div>
         </div>
@@ -54,7 +89,7 @@
       <div style="display:flex;align-items:center;gap:1.5rem">
         <div style="text-align:right">
           <div style="font-size:.8rem;font-weight:700;color:var(--navy)">5th – 7th Nov 2026</div>
-          <div style="font-size:.7rem;color:rgba(13, 27, 42, .7)"> Nairobi</div>
+          <div style="font-size:.7rem;color:rgba(13, 27, 42, .7)">KUTRRH, Nairobi</div>
         </div>
         <a href="#about" class="btn btn-primary" style="padding:.4rem 1rem;font-size:.75rem">Event Details</a>
       </div>
@@ -116,7 +151,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- CTA -->
 <div class="cta-strip reveal">
