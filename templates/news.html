@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}News & Events — AMPKen{% endblock %}
-
 {% block content %}
-
 <!-- Ticker -->
 <div class="ticker-bar">
   <div class="ticker-inner">
@@ -11,10 +9,12 @@
       <span class="ticker-item">&#9670; East African Radiotherapy Conference — Registrations Open</span>
       <span class="ticker-item">&#9670; New 2024 QA Guidelines for Linacs Released</span>
       <span class="ticker-item">&#9670; AMPKen Scholarship Applications Now Open</span>
+      <span class="ticker-item">&#9670; 1st AMPKen Medical Physics Conference — Nov 5–7 2026, Nairobi</span>
       <span class="ticker-item">&#9670; AGM 2024 — Annual General Meeting at CTC-KNH Nairobi</span>
       <span class="ticker-item">&#9670; East African Radiotherapy Conference — Registrations Open</span>
       <span class="ticker-item">&#9670; New 2024 QA Guidelines for Linacs Released</span>
       <span class="ticker-item">&#9670; AMPKen Scholarship Applications Now Open</span>
+      <span class="ticker-item">&#9670; 1st AMPKen Medical Physics Conference — Nov 5–7 2026, Nairobi</span>
     </div>
   </div>
 </div>
@@ -30,7 +30,6 @@
 <section class="section">
   <div class="container">
     <div class="news-layout">
-
       <!-- Featured -->
       <a href="#" class="news-main reveal">
         <img src="{{ url_for('static', filename='img/image4.jpg') }}" alt="Annual Conference" class="news-main-img">
@@ -43,7 +42,6 @@
           <span class="read-more">Read full story <i class="fa-solid fa-arrow-right fa-xs"></i></span>
         </div>
       </a>
-
       <!-- Sidebar -->
       <div class="news-side">
         <a href="#" class="news-card reveal">
@@ -68,9 +66,73 @@
           </div>
         </a>
       </div>
-
     </div>
+
+    <!-- ── CONFERENCE POSTER SECTION ── -->
+    <div class="poster-section reveal">
+      <div class="section-head" style="margin-top:3rem;">
+        <span class="overline">Upcoming Event</span>
+        <h2 style="margin-top:.35rem;">1st Medical Physics Conference 2026</h2>
+        <div class="gold-rule"></div>
+        <p class="lead">Join us for the inaugural AMPKen Medical Physics Conference — November 5–7, 2026, Nairobi, Kenya.</p>
+      </div>
+
+      <div class="poster-wrap">
+        <div class="poster-img-col">
+          <img
+            src="{{ url_for('static', filename='img/conference.jpeg') }}"
+            alt="1st AMPKen Medical Physics Conference 2026 Poster"
+            class="poster-img">
+        </div>
+        <div class="poster-details-col">
+          <div class="poster-meta-card">
+            <div class="c-item">
+              <div class="c-icon-box"><i class="fa-solid fa-calendar-days"></i></div>
+              <div>
+                <div class="c-label">Date</div>
+                <div class="c-val">November 5–7, 2026</div>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <div class="c-label">Venue</div>
+                <div class="c-val">Nairobi, Kenya</div>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon-box"><i class="fa-solid fa-bullseye"></i></div>
+              <div>
+                <div class="c-label">Theme</div>
+                <div class="c-val">Advancing Equitable Cancer Care in Kenya: The Role of Medical Physicists in Radiation Medicine and Safety</div>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon-box"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <div class="c-label">Enquiries</div>
+                <div class="c-val">
+                  <a href="mailto:medicalphysicskenya@gmail.com">medicalphysicskenya@gmail.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
+            <a href="/register" class="btn btn-gold">
+              <i class="fa-solid fa-pen-to-square"></i> Register Now
+            </a>
+            <a href="{{ url_for('static', filename='img/conference.jpeg') }}"
+               download="AMPKen-Conference-2026.jpeg"
+               class="btn btn-outline">
+              <i class="fa-solid fa-download"></i> Download Poster
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ── END POSTER SECTION ── -->
+
   </div>
 </section>
-
 {% endblock %}
