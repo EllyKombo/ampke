@@ -1,23 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}News & Events — AMPKen{% endblock %}
 {% block content %}
-<!-- Ticker -->
-<div class="ticker-bar">
-  <div class="ticker-inner">
-    <div class="ticker-track">
-      <span class="ticker-item">&#9670; AGM 2024 — Annual General Meeting at CTC-KNH Nairobi</span>
-      <span class="ticker-item">&#9670; East African Radiotherapy Conference — Registrations Open</span>
-      <span class="ticker-item">&#9670; New 2024 QA Guidelines for Linacs Released</span>
-      <span class="ticker-item">&#9670; AMPKen Scholarship Applications Now Open</span>
-      <span class="ticker-item">&#9670; 1st AMPKen Medical Physics Conference — Nov 5–7 2026, Nairobi</span>
-      <span class="ticker-item">&#9670; AGM 2024 — Annual General Meeting at CTC-KNH Nairobi</span>
-      <span class="ticker-item">&#9670; East African Radiotherapy Conference — Registrations Open</span>
-      <span class="ticker-item">&#9670; New 2024 QA Guidelines for Linacs Released</span>
-      <span class="ticker-item">&#9670; AMPKen Scholarship Applications Now Open</span>
-      <span class="ticker-item">&#9670; 1st AMPKen Medical Physics Conference — Nov 5–7 2026, Nairobi</span>
-    </div>
-  </div>
-</div>
 
 <div class="page-hero">
   <div class="container">
@@ -30,62 +13,85 @@
 <section class="section">
   <div class="container">
     <div class="news-layout">
-      <!-- Featured -->
-      <a href="#" class="news-main reveal">
-        <img src="{{ url_for('static', filename='img/image4.jpg') }}" alt="Annual Conference" class="news-main-img">
+
+      <!-- Featured: 2026 Conference with poster as image -->
+      <a href="/register" class="news-main reveal">
+        <img src="{{ url_for('static', filename='img/conference.jpeg') }}"
+             alt="1st AMPKen Medical Physics Conference 2026"
+             class="news-main-img">
         <div class="news-main-body">
           <div class="news-date">
-            <span class="tag" style="margin-right:.6rem">Conference</span>October 12, 2024
+            <span class="tag" style="margin-right:.6rem">Conference</span>November 5–7, 2026
           </div>
-          <h2 class="news-headline" style="margin-top:.5rem">AMPKen Annual Scientific Conference — 2024 Highlights</h2>
-          <p class="news-excerpt">A record-breaking gathering with breakthrough research presentations and international guest speakers from across East Africa. Over 80 medical physicists convened at KNH for the two-day event.</p>
-          <span class="read-more">Read full story <i class="fa-solid fa-arrow-right fa-xs"></i></span>
+          <h2 class="news-headline" style="margin-top:.5rem">
+            1st AMPKen Medical Physics Conference &amp; Launch of AMPKen — Nairobi 2026
+          </h2>
+          <p class="news-excerpt">
+            Advancing Equitable Cancer Care in Kenya: The Role of Medical Physicists in Radiation Medicine and Safety.
+            Join us for the inaugural AMPKen Medical Physics Conference, bringing together medical physicists,
+            radiation oncologists, radiologists, and health regulators from across Kenya and the region.
+          </p>
+          <span class="read-more">Register Now <i class="fa-solid fa-arrow-right fa-xs"></i></span>
         </div>
       </a>
-      <!-- Sidebar -->
+
+      <!-- Sidebar: 2024 news moved here -->
       <div class="news-side">
         <a href="#" class="news-card reveal">
-          <img src="{{ url_for('static', filename='img/image5.jpg') }}" alt="QA Guidelines" class="news-card-img">
+          <img src="{{ url_for('static', filename='img/image4.jpg') }}"
+               alt="Annual Conference 2024" class="news-card-img">
+          <div class="news-card-body">
+            <div class="news-card-date"><span class="tag" style="margin-right:.4rem;font-size:.63rem">Conference</span>Oct 2024</div>
+            <div class="news-card-title">AMPKen Annual Scientific Conference — 2024 Highlights</div>
+          </div>
+        </a>
+        <a href="#" class="news-card reveal">
+          <img src="{{ url_for('static', filename='img/image5.jpg') }}"
+               alt="QA Guidelines" class="news-card-img">
           <div class="news-card-body">
             <div class="news-card-date"><span class="tag" style="margin-right:.4rem;font-size:.63rem">Guidelines</span>Oct 2024</div>
             <div class="news-card-title">New QA Guidelines for Linacs Published</div>
           </div>
         </a>
         <a href="#" class="news-card reveal">
-          <img src="{{ url_for('static', filename='img/image6.jpg') }}" alt="Scholarships" class="news-card-img">
+          <img src="{{ url_for('static', filename='img/image6.jpg') }}"
+               alt="Scholarships" class="news-card-img">
           <div class="news-card-body">
             <div class="news-card-date"><span class="tag" style="margin-right:.4rem;font-size:.63rem">Grants</span>Aug 2024</div>
             <div class="news-card-title">Scholarship Opportunities for Graduate Students</div>
           </div>
         </a>
-        <a href="#" class="news-card reveal">
-          <img src="{{ url_for('static', filename='img/Kenya.jpg') }}" alt="Conference registration" class="news-card-img">
-          <div class="news-card-body">
-            <div class="news-card-date"><span class="tag" style="margin-right:.4rem;font-size:.63rem">Events</span>Jul 2024</div>
-            <div class="news-card-title">East African Radiotherapy Conference</div>
-          </div>
-        </a>
       </div>
+
     </div>
 
-    <!-- ── CONFERENCE POSTER SECTION ── -->
+    <!-- ── CONFERENCE DETAILS SECTION ── -->
     <div class="poster-section reveal">
-      <div class="section-head" style="margin-top:3rem;">
+      <div class="section-head" style="margin-top:4rem;">
         <span class="overline">Upcoming Event</span>
         <h2 style="margin-top:.35rem;">1st Medical Physics Conference 2026</h2>
         <div class="gold-rule"></div>
-        <p class="lead">Join us for the inaugural AMPKen Medical Physics Conference — November 5–7, 2026, Nairobi, Kenya.</p>
+        <p class="lead">Full conference details — register early to secure your place.</p>
       </div>
 
       <div class="poster-wrap">
+
+        <!-- Poster image -->
         <div class="poster-img-col">
           <img
             src="{{ url_for('static', filename='img/conference.jpeg') }}"
             alt="1st AMPKen Medical Physics Conference 2026 Poster"
             class="poster-img">
         </div>
+
+        <!-- Details panel -->
         <div class="poster-details-col">
           <div class="poster-meta-card">
+            <div class="overline" style="color:rgba(255,255,255,.5);">Conference Details</div>
+            <h3 style="color:#fff;margin-top:.35rem;margin-bottom:1.5rem;">
+              1st Medical Physics Conference &amp; Launch of AMPKen
+            </h3>
+
             <div class="c-item">
               <div class="c-icon-box"><i class="fa-solid fa-calendar-days"></i></div>
               <div>
@@ -93,6 +99,7 @@
                 <div class="c-val">November 5–7, 2026</div>
               </div>
             </div>
+
             <div class="c-item">
               <div class="c-icon-box"><i class="fa-solid fa-location-dot"></i></div>
               <div>
@@ -100,6 +107,7 @@
                 <div class="c-val">Nairobi, Kenya</div>
               </div>
             </div>
+
             <div class="c-item">
               <div class="c-icon-box"><i class="fa-solid fa-bullseye"></i></div>
               <div>
@@ -107,7 +115,16 @@
                 <div class="c-val">Advancing Equitable Cancer Care in Kenya: The Role of Medical Physicists in Radiation Medicine and Safety</div>
               </div>
             </div>
+
             <div class="c-item">
+              <div class="c-icon-box"><i class="fa-solid fa-users"></i></div>
+              <div>
+                <div class="c-label">Who Should Attend</div>
+                <div class="c-val">Medical Physicists, Radiation Oncologists, Radiologists, Radiotherapy Technologists, Oncology Nurses, Health Regulators, Vendors &amp; Students</div>
+              </div>
+            </div>
+
+            <div class="c-item" style="margin-bottom:0;">
               <div class="c-icon-box"><i class="fa-solid fa-envelope"></i></div>
               <div>
                 <div class="c-label">Enquiries</div>
@@ -118,7 +135,7 @@
             </div>
           </div>
 
-          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
+          <div class="poster-actions">
             <a href="/register" class="btn btn-gold">
               <i class="fa-solid fa-pen-to-square"></i> Register Now
             </a>
@@ -128,11 +145,23 @@
               <i class="fa-solid fa-download"></i> Download Poster
             </a>
           </div>
+
+          <div class="poster-sponsor-note">
+            <i class="fa-solid fa-handshake" style="color:var(--gold-bright);font-size:1.1rem;margin-bottom:.5rem;display:block;"></i>
+            <p style="font-size:.85rem;color:var(--text-mute);line-height:1.7;margin:0;">
+              Interested in sponsoring? Packages from <strong>USD 1,000</strong> (Exhibitor) to
+              <strong>USD 8,500</strong> (Platinum).
+              <a href="mailto:medicalphysicskenya@gmail.com" style="color:var(--gold);font-weight:600;">Contact us</a>
+              to discuss opportunities.
+            </p>
+          </div>
+
         </div>
       </div>
     </div>
-    <!-- ── END POSTER SECTION ── -->
+    <!-- ── END CONFERENCE DETAILS ── -->
 
   </div>
 </section>
+
 {% endblock %}
