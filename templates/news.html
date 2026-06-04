@@ -12,9 +12,11 @@
 
 <section class="section">
   <div class="container">
+
+    <!-- ── NEWS GRID ── -->
     <div class="news-layout">
 
-      <!-- Featured: 2026 Conference with poster as image -->
+      <!-- Featured: 2026 Conference -->
       <a href="/register" class="news-main reveal">
         <img src="{{ url_for('static', filename='img/conference.jpeg') }}"
              alt="1st AMPKen Medical Physics Conference 2026"
@@ -35,7 +37,7 @@
         </div>
       </a>
 
-      <!-- Sidebar: 2024 news moved here -->
+      <!-- Sidebar: 2024 news -->
       <div class="news-side">
         <a href="#" class="news-card reveal">
           <img src="{{ url_for('static', filename='img/image4.jpg') }}"
@@ -62,10 +64,9 @@
           </div>
         </a>
       </div>
-
     </div>
 
-    <!-- ── CONFERENCE DETAILS SECTION ── -->
+    <!-- ── CONFERENCE DETAILS + BROCHURE ── -->
     <div class="poster-section reveal">
       <div class="section-head" style="margin-top:4rem;">
         <span class="overline">Upcoming Event</span>
@@ -76,15 +77,37 @@
 
       <div class="poster-wrap">
 
-        <!-- Poster image -->
+        <!-- Left: poster + brochure thumbnail -->
         <div class="poster-img-col">
           <img
             src="{{ url_for('static', filename='img/conference.jpeg') }}"
             alt="1st AMPKen Medical Physics Conference 2026 Poster"
             class="poster-img">
+
+          <!-- Brochure thumbnail -->
+          <div class="brochure-thumb reveal">
+            <div class="brochure-label">
+              <i class="fa-solid fa-file-pdf" style="color:var(--gold-bright);"></i>
+              Conference Brochure &amp; Sponsorship Packages
+            </div>
+            <a href="{{ url_for('static', filename='img/brochure.jpeg') }}"
+               target="_blank" class="brochure-preview-wrap">
+              <img src="{{ url_for('static', filename='img/brochure.jpeg') }}"
+                   alt="AMPKen Conference Brochure"
+                   class="brochure-preview-img">
+              <div class="brochure-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus"></i> View Full Brochure
+              </div>
+            </a>
+            <a href="{{ url_for('static', filename='img/brochure.jpeg') }}"
+               download="AMPKen-Conference-Brochure-2026.jpeg"
+               class="btn btn-outline" style="width:100%;justify-content:center;margin-top:.75rem;font-size:.8rem;">
+              <i class="fa-solid fa-download"></i> Download Brochure
+            </a>
+          </div>
         </div>
 
-        <!-- Details panel -->
+        <!-- Right: details panel -->
         <div class="poster-details-col">
           <div class="poster-meta-card">
             <div class="overline" style="color:rgba(255,255,255,.5);">Conference Details</div>
@@ -146,20 +169,91 @@
             </a>
           </div>
 
-          <div class="poster-sponsor-note">
-            <i class="fa-solid fa-handshake" style="color:var(--gold-bright);font-size:1.1rem;margin-bottom:.5rem;display:block;"></i>
-            <p style="font-size:.85rem;color:var(--text-mute);line-height:1.7;margin:0;">
-              Interested in sponsoring? Packages from <strong>USD 1,000</strong> (Exhibitor) to
-              <strong>USD 8,500</strong> (Platinum).
-              <a href="mailto:medicalphysicskenya@gmail.com" style="color:var(--gold);font-weight:600;">Contact us</a>
-              to discuss opportunities.
-            </p>
+          <!-- Sponsorship packages -->
+          <div class="sponsor-packages">
+            <div class="overline" style="margin-bottom:1rem;">Sponsorship Packages</div>
+
+            <div class="sponsor-pkg platinum">
+              <div class="sponsor-pkg-header">
+                <span class="sponsor-pkg-name">Platinum Sponsor</span>
+                <span class="sponsor-pkg-price">USD 6,000+</span>
+              </div>
+              <ul class="sponsor-pkg-list">
+                <li>Recognition as Principal Conference Sponsor</li>
+                <li>Large premium exhibition booth</li>
+                <li>Opening remarks &amp; sponsored scientific session</li>
+                <li>Logo on banner, website, bags, program, certificates</li>
+                <li>Full-page ad in program booklet</li>
+                <li>5 complimentary registrations</li>
+                <li>Promo materials in delegate packs &amp; social media recognition</li>
+              </ul>
+            </div>
+
+            <div class="sponsor-pkg gold">
+              <div class="sponsor-pkg-header">
+                <span class="sponsor-pkg-name">Gold Sponsor</span>
+                <span class="sponsor-pkg-price">USD 4,500</span>
+              </div>
+              <ul class="sponsor-pkg-list">
+                <li>Logo on website, banners, program booklet</li>
+                <li>Half-page ad in booklet</li>
+                <li>3 complimentary registrations</li>
+                <li>Recognition during opening ceremony</li>
+                <li>Chair/support one scientific session</li>
+                <li>Medium-size exhibition booth</li>
+              </ul>
+            </div>
+
+            <div class="sponsor-pkg silver">
+              <div class="sponsor-pkg-header">
+                <span class="sponsor-pkg-name">Silver Sponsor</span>
+                <span class="sponsor-pkg-price">USD 3,000</span>
+              </div>
+              <ul class="sponsor-pkg-list">
+                <li>Standard exhibition booth</li>
+                <li>Logo in conference materials</li>
+                <li>Quarter-page ad in booklet</li>
+                <li>2 complimentary registrations</li>
+                <li>Recognition during announcements</li>
+              </ul>
+            </div>
+
+            <div class="sponsor-pkg bronze">
+              <div class="sponsor-pkg-header">
+                <span class="sponsor-pkg-name">Bronze Sponsor</span>
+                <span class="sponsor-pkg-price">USD 1,500</span>
+              </div>
+              <ul class="sponsor-pkg-list">
+                <li>Shared exhibition/display table</li>
+                <li>Logo in program booklet</li>
+                <li>1 complimentary registration</li>
+                <li>Recognition on sponsor appreciation slide</li>
+              </ul>
+            </div>
+
+            <div class="sponsor-pkg exhibitor">
+              <div class="sponsor-pkg-header">
+                <span class="sponsor-pkg-name">Exhibitor Package</span>
+                <span class="sponsor-pkg-price">USD 1,000</span>
+              </div>
+              <ul class="sponsor-pkg-list">
+                <li>Exhibition table/space only</li>
+                <li>Company listed in conference materials</li>
+                <li>Opportunity to display products/services</li>
+                <li>1 exhibitor pass</li>
+              </ul>
+            </div>
+
+            <a href="mailto:medicalphysicskenya@gmail.com?subject=Sponsorship Enquiry — AMPKen Conference 2026"
+               class="btn btn-gold" style="width:100%;justify-content:center;margin-top:1.25rem;">
+              <i class="fa-solid fa-handshake"></i> Become a Sponsor
+            </a>
           </div>
 
         </div>
       </div>
     </div>
-    <!-- ── END CONFERENCE DETAILS ── -->
+    <!-- ── END CONFERENCE SECTION ── -->
 
   </div>
 </section>
