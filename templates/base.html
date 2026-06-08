@@ -8,6 +8,27 @@
     <meta name="description"
         content="AMPKen advances medical physics in Kenya through education, research and professional development.">
 
+    <!-- ── Favicon & Site Icon ── -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/flavicon.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/flavicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/flavicon.png') }}">
+
+    <!-- ── Open Graph (Google / social sharing thumbnail) ── -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ampken.org">
+    <meta property="og:site_name" content="AMPKen">
+    <meta property="og:title" content="AMPKen — Association of Medical Physicists of Kenya">
+    <meta property="og:description" content="Advancing medical physics in Kenya through education, research and professional development.">
+    <meta property="og:image" content="https://ampken.org/static/img/flavicon.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+
+    <!-- ── Twitter / X Card ── -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="AMPKen — Association of Medical Physicists of Kenya">
+    <meta name="twitter:description" content="Advancing medical physics in Kenya through education, research and professional development.">
+    <meta name="twitter:image" content="https://ampken.org/static/img/flavicon.png">
+
     <!-- External Web Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +88,6 @@
             display: flex;
             white-space: nowrap;
             padding-left: 100%;
-            /* Delays first pass clean entry initialization */
             animation: continuousTicker 30s linear infinite;
         }
 
@@ -75,28 +95,22 @@
             display: inline-flex;
             align-items: center;
             padding-right: 4rem;
-            /* Safe whitespace boundary separator between alerts */
         }
 
         @keyframes continuousTicker {
-            0% {
-                transform: translate3d(0, 0, 0);
-            }
-
-            100% {
-                transform: translate3d(-100%, 0, 0);
-            }
+            0%   { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        /* Pause scrolling on hover action for readability access compliance */
+        /* Pause scrolling on hover for readability */
         .ticker-track:hover {
             animation-play-state: paused;
         }
 
-        /* 
-       The Runtime Spacer: Uses JS computed '--nav-height' calculation.
-       Safely defaults to 125px if JavaScript loading is delayed.
-    */
+        /*
+           The Runtime Spacer: Uses JS computed '--nav-height' calculation.
+           Safely defaults to 125px if JavaScript loading is delayed.
+        */
         main {
             flex: 1;
             padding-top: var(--nav-height, 125px) !important;
@@ -116,17 +130,17 @@
                 <div class="ticker-track">
                     <div class="ticker-item"><i class="fa-solid fa-bullhorn"
                             style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i> Register now for the 2026
-                        AMPKen Conference  Nairobi!</div>
+                        AMPKen Conference &nbsp; Nairobi!</div>
                     <div class="ticker-item"><i class="fa-solid fa-bell"
                             style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i> Membership renewal for the
                         2026 term is now open.</div>
                     <div class="ticker-item"><i class="fa-solid fa-award"
                             style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i> Join our professional
                         network to access unique CPD opportunities.</div>
-                    <!-- Duplicated tracks to seamlessly support high resolution viewport loops -->
+                    <!-- Duplicated for seamless loop -->
                     <div class="ticker-item"><i class="fa-solid fa-bullhorn"
                             style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i> Register now for the 2026
-                        AMPKen Conference  Nairobi!</div>
+                        AMPKen Conference &nbsp; Nairobi!</div>
                     <div class="ticker-item"><i class="fa-solid fa-bell"
                             style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i> Membership renewal for the
                         2026 term is now open.</div>
@@ -191,7 +205,7 @@
                         style="display:flex;flex-wrap:wrap;gap:1.5rem;margin:.75rem 0 1.25rem;font-size:.85rem;color:rgba(255,255,255,.7)">
                         <div style="display:flex;align-items:center;gap:.45rem">
                             <i class="fa-solid fa-location-dot" style="color:var(--gold-bright)"></i>
-                            <span> Nairobi, Kenya</span>
+                            <span>Nairobi, Kenya</span>
                         </div>
                         <div style="display:flex;align-items:center;gap:.45rem">
                             <i class="fa-solid fa-clock" style="color:var(--gold-bright)"></i>
@@ -216,7 +230,8 @@
                             style="display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:var(--r-sm);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:.78rem;font-weight:500;transition:all .2s">
                             <i class="fa-brands fa-facebook-f"></i> Facebook
                         </a>
-                        <a href="https://www.linkedin.com/company/medicalphysicske/?viewAsMember=true" target="_blank" rel="noopener"
+                        <a href="https://www.linkedin.com/company/medicalphysicske/?viewAsMember=true" target="_blank"
+                            rel="noopener"
                             style="display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:var(--r-sm);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:.78rem;font-weight:500;transition:all .2s">
                             <i class="fa-brands fa-linkedin-in"></i> LinkedIn
                         </a>
@@ -258,8 +273,9 @@
                         <a href="https://www.instagram.com/medicalphysicske?igsh=Z3Uybng3a2wwNG00" target="_blank"
                             rel="noopener" class="social-btn" aria-label="Instagram"><i
                                 class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/medicalphysicske/?viewAsMember=true" target="_blank" rel="noopener"
-                            class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/company/medicalphysicske/?viewAsMember=true" target="_blank"
+                            rel="noopener" class="social-btn" aria-label="LinkedIn"><i
+                                class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
@@ -292,8 +308,8 @@
                                 style="color:var(--gold-bright);margin-right:.4rem"></i>medicalphysicskenya@gmail.com
                         </a>
                         <a href="tel:+254722520197">
-                            <i class="fa-solid fa-phone" style="color:var(--gold-bright);margin-right:.4rem"></i>+254
-                            722 520197
+                            <i class="fa-solid fa-phone"
+                                style="color:var(--gold-bright);margin-right:.4rem"></i>+254 722 520197
                         </a>
                         <span><i class="fa-solid fa-location-dot"
                                 style="color:var(--gold-bright);margin-right:.4rem"></i>CTC-KNH, Hospital Rd,
@@ -320,8 +336,6 @@
                     const measuredHeight = entry.borderBoxSize
                         ? entry.borderBoxSize[0].blockSize
                         : entry.target.getBoundingClientRect().height;
-
-                    // Rewrite layout token with real time window dimensions 
                     document.documentElement.style.setProperty('--nav-height', `${measuredHeight}px`);
                 }
             });
