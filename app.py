@@ -9,6 +9,14 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = 'ampken-2026-secret-key'
 
+# ── Heroku Force HTTPS Hook ──────────────────
+@app.before_request
+def force_https():
+    # Heroku forwards the original protocol in this header
+    if request.headers.get('X-Forwarded-Proto', 'http') == 'http':
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
+
 # ── Existing routes ──────────────────────────
 
 @app.route('/')
