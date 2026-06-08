@@ -168,7 +168,7 @@ main { padding-top: 0; }
    ======================= */
 .hero { background: var(--navy); position: relative; overflow: hidden; }
 .hero-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; align-items: stretch; }
-.hero-text { padding: 4rem 3.5rem 4rem 0; display: flex; flex-direction: column; justify-content: center; }
+.hero-text { padding: 2rem 3.5rem 2rem 0; display: flex; flex-direction: column; justify-content: center; }
 .hero-text h1 { color: #fff; font-size: 2.8rem; line-height: 1.12; }
 .hero-text h1 span { color: var(--gold-bright); }
 .hero-text .lead { color: rgba(255, 255, 255, .65); margin-top: 1rem; font-size: 1rem; max-width: 440px; }
