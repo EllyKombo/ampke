@@ -17,7 +17,7 @@
     <div class="news-layout">
 
       <!-- Featured: 2026 Conference -->
-      <a href="/register" class="news-main reveal">
+      <div class="news-main reveal">
         <img src="{{ url_for('static', filename='img/conference.jpeg') }}"
              alt="1st AMPKen Medical Physics Conference 2026"
              class="news-main-img">
@@ -33,9 +33,17 @@
             Join us for the inaugural AMPKen Medical Physics Conference, bringing together medical physicists,
             radiation oncologists, radiologists, and health regulators from across Kenya and the region.
           </p>
-          <span class="read-more">Register Now <i class="fa-solid fa-arrow-right fa-xs"></i></span>
+          <!-- ── TWO ACTION BUTTONS ── -->
+          <div style="display:flex;gap:.85rem;flex-wrap:wrap;margin-top:1.25rem;">
+            <a href="{{ url_for('register') }}" class="btn btn-gold">
+              <i class="fa-solid fa-pen-to-square"></i> Register Now
+            </a>
+            <a href="{{ url_for('abstract') }}" class="btn btn-outline">
+              <i class="fa-solid fa-file-lines"></i> Submit Abstract
+            </a>
+          </div>
         </div>
-      </a>
+      </div>
 
       <!-- Sidebar: 2024 news -->
       <div class="news-side">
@@ -84,7 +92,6 @@
             alt="1st AMPKen Medical Physics Conference 2026 Poster"
             class="poster-img">
 
-          <!-- Brochure thumbnail -->
           <div class="brochure-thumb reveal">
             <div class="brochure-label">
               <i class="fa-solid fa-file-pdf" style="color:var(--gold-bright);"></i>
@@ -158,9 +165,13 @@
             </div>
           </div>
 
+          <!-- ── TWO ACTION BUTTONS in the details panel too ── -->
           <div class="poster-actions">
-            <a href="/register" class="btn btn-gold">
+            <a href="{{ url_for('register') }}" class="btn btn-gold">
               <i class="fa-solid fa-pen-to-square"></i> Register Now
+            </a>
+            <a href="{{ url_for('abstract') }}" class="btn btn-outline">
+              <i class="fa-solid fa-file-lines"></i> Submit Abstract
             </a>
             <a href="{{ url_for('static', filename='img/conference.jpeg') }}"
                download="AMPKen-Conference-2026.jpeg"
