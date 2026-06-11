@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% block title %}Conference Registration — AMPKen{% endblock %}
+{% block content %}
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <span class="overline">1st AMPKen Conference · Nairobi 2026</span>
+    <h1>Conference Registration</h1>
+    <p class="lead">Reserve your place at the 1st AMPKen Medical Physics Conference &amp; Launch, 5–7 November 2026, Nairobi.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="reg-layout">
+
+      <!-- ── Left info panel ── -->
+      <div class="reg-info">
+
+        <div class="reg-info-card">
+          <span class="overline">Conference Details</span>
+          <h3 style="margin-top:.35rem;margin-bottom:1.25rem;">1st Medical Physics Conference</h3>
+          <div class="reg-detail-list">
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-calendar-days"></i></div>
+              <div>
+                <div class="reg-detail-label">Date</div>
+                <div class="reg-detail-val">5–7 November 2026</div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <div class="reg-detail-label">Venue</div>
+                <div class="reg-detail-val">Nairobi, Kenya</div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-bullseye"></i></div>
+              <div>
+                <div class="reg-detail-label">Theme</div>
+                <div class="reg-detail-val">Advancing Equitable Cancer Care in Kenya: The Role of Medical Physicists in Radiation Medicine and Safety</div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-users"></i></div>
+              <div>
+                <div class="reg-detail-label">Who Should Attend</div>
+                <div class="reg-detail-val">Medical Physicists, Radiation Oncologists, Radiologists, Radiotherapy Technologists, Oncology Nurses, Health Regulators, Vendors &amp; Students</div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <div class="reg-detail-label">Enquiries</div>
+                <div class="reg-detail-val">
+                  <a href="mailto:medicalphysicskenya@gmail.com"
+                     style="color:var(--gold);font-weight:600;">medicalphysicskenya@gmail.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Registration fees -->
+        <div class="reg-info-card">
+          <span class="overline">Registration Fees</span>
+          <h3 style="margin-top:.35rem;margin-bottom:1.25rem;">Conference Fees</h3>
+          <div class="reg-detail-list">
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-tag"></i></div>
+              <div>
+                <div class="reg-detail-label">AMPKen Member</div>
+                <div class="reg-detail-val"><strong>KSh 3,000</strong></div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-tag"></i></div>
+              <div>
+                <div class="reg-detail-label">Non-Member / Allied Health</div>
+                <div class="reg-detail-val"><strong>KSh 5,000</strong></div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-tag"></i></div>
+              <div>
+                <div class="reg-detail-label">International Delegate</div>
+                <div class="reg-detail-val"><strong>USD 50</strong></div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-tag"></i></div>
+              <div>
+                <div class="reg-detail-label">Student</div>
+                <div class="reg-detail-val"><strong>KSh 1,000</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Abstract submission link -->
+        <div class="reg-sponsor-note">
+          <span class="overline" style="color:rgba(255,255,255,.45);">Presenting a Paper?</span>
+          <p style="color:rgba(255,255,255,.75);font-size:.88rem;line-height:1.7;margin-top:.5rem;">
+            If you intend to present at the conference, please also submit your abstract via the
+            scientific abstract portal.
+          </p>
+          <a href="{{ url_for('abstract') }}"
+             class="btn btn-gold" style="margin-top:1rem;width:100%;justify-content:center;">
+            <i class="fa-solid fa-file-lines"></i> Submit an Abstract
+          </a>
+        </div>
+
+      </div>
+      <!-- ── End left panel ── -->
+
+      <!-- ── Right: form ── -->
+      <div class="reg-form-wrap">
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="reg-alert {% if category == 'success' %}reg-alert-success{% else %}reg-alert-error{% endif %}"
+                   style="margin-bottom:1.5rem;">
+                <i class="fa-solid {% if category == 'success' %}fa-circle-check{% else %}fa-circle-exclamation{% endif %}"></i>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="reg-form-header">
+          <span class="overline">Registration Application</span>
+          <h3>Inaugural Conference Registration</h3>
+          <p style="color:var(--text-mute);font-size:.88rem;margin-top:.4rem;line-height:1.6;">
+            Submit details below to reserve your seating for the 1st AMPKen Medical Physics
+            Conference &amp; Launch (5–7 November 2026, Nairobi).
+          </p>
+        </div>
+
+        <form method="POST" action="{{ url_for('register') }}" novalidate>
+
+          <!-- Personal details -->
+          <div class="form-row" style="margin-bottom:1rem;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">First Name <span class="req">*</span></label>
+              <input type="text" name="first_name" class="form-input" required
+                     placeholder="e.g. Arthur">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Last Name <span class="req">*</span></label>
+              <input type="text" name="last_name" class="form-input" required
+                     placeholder="e.g. Wakhule">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="req">*</span></label>
+            <input type="email" name="email" class="form-input" required
+                   placeholder="e.g. arthur.w@hospital.or.ke">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Phone Number <span class="req">*</span></label>
+              <input type="tel" name="phone" class="form-input" required
+                     placeholder="e.g. +254 722 000000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Affiliated Institution / Hospital <span class="req">*</span></label>
+              <input type="text" name="organisation" class="form-input" required
+                     placeholder="e.g. Nairobi Hospital / University of Nairobi">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Profession / Designation <span class="req">*</span></label>
+            <select name="profession" class="form-input" required>
+              <option value="">— Select your profession —</option>
+              <option value="Medical Physicist">Medical Physicist</option>
+              <option value="Radiation Oncologist">Radiation Oncologist</option>
+              <option value="Radiologist">Radiologist</option>
+              <option value="Radiotherapy Technologist">Radiotherapy Technologist</option>
+              <option value="Oncology Nurse">Oncology Nurse</option>
+              <option value="Health Regulator">Health Regulator</option>
+              <option value="Vendor / Industry">Vendor / Industry</option>
+              <option value="Student">Student</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Registration Category <span class="req">*</span></label>
+            <select name="attendance" class="form-input" required>
+              <option value="">— Select registration category —</option>
+              <option value="AMPKen Member (KSh 3,000)">AMPKen Member (KSh 3,000)</option>
+              <option value="Non-Member / Allied Health (KSh 5,000)">Non-Member / Allied Health (KSh 5,000)</option>
+              <option value="International Delegate (USD 50)">International Delegate (USD 50)</option>
+              <option value="Student (KSh 1,000)">Student (KSh 1,000)</option>
+            </select>
+          </div>
+
+          <!-- Abstract checkbox -->
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:.65rem;padding:.75rem 1rem;
+                          background:var(--bg-soft);border:1px solid var(--border);
+                          border-radius:var(--r-md);cursor:pointer;">
+              <input type="checkbox" name="will_submit_abstract" value="Yes"
+                     style="accent-color:var(--navy);width:16px;height:16px;flex-shrink:0;">
+              <span style="font-size:.88rem;color:var(--text-body);line-height:1.5;">
+                I intend to submit and present a scientific abstract
+              </span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Special Dietary Constraints (if any)</label>
+            <input type="text" name="dietary" class="form-input"
+                   placeholder="e.g. Vegetarian, Halal, None">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Additional Message or Questions</label>
+            <textarea name="message" class="form-input" rows="3"
+                      placeholder="Any questions or additional information..."></textarea>
+          </div>
+
+          <!-- Consent -->
+          <div class="reg-consent">
+            <input type="checkbox" id="consent" required
+                   style="accent-color:var(--navy);width:15px;height:15px;">
+            <label for="consent" style="font-size:.85rem;color:var(--text-body);line-height:1.6;">
+              I confirm that the information provided is accurate. I understand that registration
+              is confirmed upon receipt of payment and that AMPKen may contact me regarding
+              conference updates.
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-gold reg-submit">
+            <i class="fa-solid fa-paper-plane"></i> Submit Conference Registry
+          </button>
+
+        </form>
+      </div>
+      <!-- ── End form ── -->
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
