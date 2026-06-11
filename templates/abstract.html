@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+{% block title %}Submit Abstract — AMPKen{% endblock %}
+{% block content %}
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="container">
+    <span class="overline">1st AMPKen Conference · Nairobi 2026</span>
+    <h1>Abstract Submission</h1>
+    <p class="lead">Submit your abstract for oral or poster presentation at the 1st AMPKen Medical Physics Conference, 5–7 November 2026.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <div class="reg-layout">
+
+      <!-- ── Left info panel ── -->
+      <div class="reg-info">
+
+        <div class="reg-info-card">
+          <span class="overline">Submission Guidelines</span>
+          <h3 style="margin-top:.35rem;margin-bottom:1.25rem;">Before You Submit</h3>
+          <div class="reg-detail-list">
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-align-left"></i></div>
+              <div>
+                <div class="reg-detail-label">Word Limit</div>
+                <div class="reg-detail-val">Maximum <strong>300 words</strong> for the abstract body.</div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-language"></i></div>
+              <div>
+                <div class="reg-detail-label">Language</div>
+                <div class="reg-detail-val">Abstracts must be written in <strong>English</strong>.</div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-users"></i></div>
+              <div>
+                <div class="reg-detail-label">Co-Authors</div>
+                <div class="reg-detail-val">List all co-authors. The presenting author submits on behalf of all.</div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+              <div>
+                <div class="reg-detail-label">Confirmation</div>
+                <div class="reg-detail-val">You will receive an email confirmation immediately on submission.</div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-microscope"></i></div>
+              <div>
+                <div class="reg-detail-label">Review</div>
+                <div class="reg-detail-val">The scientific committee will notify authors of acceptance outcomes.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key dates -->
+        <div class="reg-info-card">
+          <span class="overline">Key Dates</span>
+          <h3 style="margin-top:.35rem;margin-bottom:1.25rem;">Conference Timeline</h3>
+          <div class="reg-detail-list">
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-calendar-check"></i></div>
+              <div>
+                <div class="reg-detail-label">Abstract Deadline</div>
+                <div class="reg-detail-val">31 August 2026</div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-bell"></i></div>
+              <div>
+                <div class="reg-detail-label">Notification of Acceptance</div>
+                <div class="reg-detail-val">30 September 2026</div>
+              </div>
+            </div>
+            <div class="reg-detail-item">
+              <div class="reg-detail-icon"><i class="fa-solid fa-calendar-days"></i></div>
+              <div>
+                <div class="reg-detail-label">Conference Dates</div>
+                <div class="reg-detail-val">5–7 November 2026 · Nairobi, Kenya</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enquiries -->
+        <div class="reg-sponsor-note">
+          <span class="overline" style="color:rgba(255,255,255,.45);">Enquiries</span>
+          <p style="color:rgba(255,255,255,.75);font-size:.88rem;line-height:1.7;margin-top:.5rem;">
+            For scientific programme enquiries contact the AMPKen organising committee at
+            <a href="mailto:medicalphysicskenya@gmail.com"
+               style="color:var(--gold-bright);font-weight:600;">medicalphysicskenya@gmail.com</a>
+          </p>
+          <a href="{{ url_for('register') }}"
+             class="btn btn-gold" style="margin-top:1rem;width:100%;justify-content:center;">
+            <i class="fa-solid fa-pen-to-square"></i> Also Register for the Conference
+          </a>
+        </div>
+
+      </div>
+      <!-- ── End left panel ── -->
+
+      <!-- ── Right: form ── -->
+      <div class="reg-form-wrap">
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="reg-alert {% if category == 'success' %}reg-alert-success{% else %}reg-alert-error{% endif %}"
+                   style="margin-bottom:1.5rem;">
+                <i class="fa-solid {% if category == 'success' %}fa-circle-check{% else %}fa-circle-exclamation{% endif %}"></i>
+                <span>{{ message }}</span>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="reg-form-header">
+          <span class="overline">Abstract Submission Application</span>
+          <h3>Abstract Submission Form</h3>
+          <p style="color:var(--text-mute);font-size:.88rem;margin-top:.4rem;line-height:1.6;">
+            Submit your abstract below to be considered for oral or poster presentation at the
+            1st AMPKen Medical Physics Conference &amp; Launch (5–7 November 2026, Nairobi).
+          </p>
+        </div>
+
+        <form method="POST" action="{{ url_for('abstract') }}" novalidate>
+
+          <!-- Presenting Author -->
+          <p style="font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+                    color:var(--text-mute);margin-bottom:1rem;padding-bottom:.6rem;
+                    border-bottom:1px solid var(--border);">
+            Presenting Author
+          </p>
+
+          <div class="form-row" style="margin-bottom:1rem;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">First Name <span class="req">*</span></label>
+              <input type="text" name="first_name" class="form-input" required
+                     value="{{ form_data.first_name if form_data else '' }}"
+                     placeholder="e.g. Arthur">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Last Name <span class="req">*</span></label>
+              <input type="text" name="last_name" class="form-input" required
+                     value="{{ form_data.last_name if form_data else '' }}"
+                     placeholder="e.g. Wakhule">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="req">*</span></label>
+            <input type="email" name="email" class="form-input" required
+                   value="{{ form_data.email if form_data else '' }}"
+                   placeholder="e.g. arthur.w@hospital.or.ke">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" name="phone" class="form-input"
+                     value="{{ form_data.phone if form_data else '' }}"
+                     placeholder="e.g. +254 722 000000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Institution / Hospital <span class="req">*</span></label>
+              <input type="text" name="institution" class="form-input" required
+                     value="{{ form_data.institution if form_data else '' }}"
+                     placeholder="e.g. Kenyatta National Hospital">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Co-Authors
+              <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-mute);">
+                (optional — separate names with commas)
+              </span>
+            </label>
+            <input type="text" name="co_authors" class="form-input"
+                   value="{{ form_data.co_authors if form_data else '' }}"
+                   placeholder="e.g. Jane Mwangi, John Otieno">
+          </div>
+
+          <!-- Abstract Details -->
+          <p style="font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+                    color:var(--text-mute);margin:1.75rem 0 1rem;padding-bottom:.6rem;
+                    border-bottom:1px solid var(--border);">
+            Abstract Details
+          </p>
+
+          <div class="form-group">
+            <label class="form-label">Abstract Title <span class="req">*</span></label>
+            <input type="text" name="title" class="form-input" required
+                   value="{{ form_data.title if form_data else '' }}"
+                   placeholder="Full title of your paper or presentation">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Topic Category <span class="req">*</span></label>
+              <select name="category" class="form-input" required>
+                <option value="">— Select a category —</option>
+                {% for cat in categories %}
+                  <option value="{{ cat }}"
+                    {% if form_data and form_data.category == cat %}selected{% endif %}>
+                    {{ cat }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Presentation Preference <span class="req">*</span></label>
+              <select name="presentation" class="form-input" required>
+                <option value="">— Select —</option>
+                <option value="Oral"   {% if form_data and form_data.presentation == 'Oral'   %}selected{% endif %}>Oral Presentation</option>
+                <option value="Poster" {% if form_data and form_data.presentation == 'Poster' %}selected{% endif %}>Poster Presentation</option>
+                <option value="Either" {% if form_data and form_data.presentation == 'Either' %}selected{% endif %}>Either</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              Abstract Body <span class="req">*</span>
+              <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-mute);">
+                — max 300 words
+              </span>
+            </label>
+            <textarea name="abstract" class="form-input" required rows="10"
+                      style="min-height:220px;resize:vertical;"
+                      placeholder="Provide background, objectives, methods, results and conclusion...">{{ form_data.abstract if form_data else '' }}</textarea>
+            <p id="word-count" style="margin:.35rem 0 0;font-size:.78rem;color:var(--text-mute);">
+              0 / 300 words
+            </p>
+          </div>
+
+          <!-- Consent -->
+          <div class="reg-consent">
+            <input type="checkbox" id="consent" required>
+            <label for="consent" style="font-size:.85rem;color:var(--text-body);line-height:1.6;">
+              I confirm that this abstract has not been published elsewhere, all co-authors have
+              approved the submission, and I understand that abstract acceptance does not constitute
+              conference registration.
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-gold reg-submit">
+            <i class="fa-solid fa-paper-plane"></i> Submit Abstract
+          </button>
+
+        </form>
+      </div>
+      <!-- ── End form ── -->
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const textarea = document.querySelector('textarea[name="abstract"]');
+  const counter  = document.getElementById('word-count');
+  function updateCount() {
+    const words = textarea.value.trim() === '' ? 0 : textarea.value.trim().split(/\s+/).length;
+    counter.textContent = words + ' / 300 words';
+    counter.style.color = words > 300 ? '#dc2626' : 'var(--text-mute)';
+  }
+  textarea.addEventListener('input', updateCount);
+  updateCount();
+</script>
+
+{% endblock %}
