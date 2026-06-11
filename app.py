@@ -9,7 +9,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.secret_key = 'ampken-2026-secret-key'
 
-# ── Heroku Force HTTPS Hook ──────────────────
+# ── Heroku Force HTTPS ───────────────────────
 @app.before_request
 def force_https():
     if request.headers.get('X-Forwarded-Proto', 'http') == 'http':
@@ -17,7 +17,6 @@ def force_https():
         return redirect(url, code=301)
 
 # ── Existing routes ──────────────────────────
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -42,14 +41,12 @@ def news():
 def contacts():
     return render_template('contacts.html')
 
-# ── Shared email config ───────────────────────
-
+# ── Shared email config ──────────────────────
 SMTP_USER = 'medicalphysicskenya@gmail.com'
-SMTP_PASS = 'YOUR_GMAIL_APP_PASSWORD'   # ← replace with your Gmail App Password
-
+SMTP_PASS = os.environ.get('SMTP_PASS', '')   # set via: heroku config:set SMTP_PASS='yourpassword'
 
 def _send(to_email, subject, html_body):
-    """Internal helper — sends html email and bcc's the org inbox."""
+    """Send html email and bcc the org inbox."""
     msg = MIMEMultipart('alternative')
     msg['Subject'] = subject
     msg['From']    = f'AMPKen <{SMTP_USER}>'
@@ -60,30 +57,28 @@ def _send(to_email, subject, html_body):
             server.starttls()
             server.login(SMTP_USER, SMTP_PASS)
             server.sendmail(SMTP_USER, to_email, msg.as_string())
-            server.sendmail(SMTP_USER, SMTP_USER, msg.as_string())
+            server.sendmail(SMTP_USER, SMTP_USER, msg.as_string())  # copy to org inbox
     except Exception as e:
         print(f"Email error: {e}")
 
-
-# ── Registration ─────────────────────────────
-
+# ── Conference Registration ──────────────────
 REGISTRATIONS_CSV = 'registrations.csv'
+
+REG_FIELDS = [
+    'timestamp', 'first_name', 'last_name', 'email',
+    'phone', 'organisation', 'profession', 'attendance',
+    'will_submit_abstract', 'dietary', 'message'
+]
 
 def save_registration(data):
     file_exists = os.path.isfile(REGISTRATIONS_CSV)
     with open(REGISTRATIONS_CSV, 'a', newline='', encoding='utf-8') as f:
-        fieldnames = [
-            'timestamp', 'first_name', 'last_name', 'email',
-            'phone', 'organisation', 'profession', 'attendance',
-            'dietary', 'message'
-        ]
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer = csv.DictWriter(f, fieldnames=REG_FIELDS)
         if not file_exists:
             writer.writeheader()
         writer.writerow(data)
 
-
-def send_registration_email(to_email, first_name):
+def send_registration_email(to_email, first_name, category):
     html_body = f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
       <div style="background:#0d1b2a;padding:2rem;text-align:center;">
@@ -95,25 +90,30 @@ def send_registration_email(to_email, first_name):
       <div style="padding:2rem;border:1px solid #e2e8f0;">
         <h3 style="color:#0d1b2a;">Dear {first_name},</h3>
         <p style="color:#3d4f61;line-height:1.7;">
-          Thank you for registering for the <strong>1st AMPKen Medical Physics Conference 2026</strong>.
+          Thank you for registering for the
+          <strong>1st AMPKen Medical Physics Conference 2026</strong>.
           Your registration has been received successfully.
         </p>
-        <div style="background:#f6f8fb;border-left:4px solid #d4a017;padding:1rem 1.5rem;margin:1.5rem 0;border-radius:4px;">
+        <div style="background:#f6f8fb;border-left:4px solid #d4a017;
+                    padding:1rem 1.5rem;margin:1.5rem 0;border-radius:4px;">
           <p style="margin:0;color:#0d1b2a;font-weight:600;">Conference Details</p>
-          <p style="margin:.5rem 0 0;color:#3d4f61;font-size:.9rem;line-height:1.7;">
+          <p style="margin:.5rem 0 0;color:#3d4f61;font-size:.9rem;line-height:1.8;">
             📅 <strong>Date:</strong> November 5–7, 2026<br>
             📍 <strong>Venue:</strong> Nairobi, Kenya<br>
+            🎟️ <strong>Category:</strong> {category}<br>
             🌐 <strong>Website:</strong> www.ampken.org
           </p>
         </div>
         <p style="color:#3d4f61;line-height:1.7;">
           We will send further details including the programme and venue closer to the event.
           For enquiries contact
-          <a href="mailto:medicalphysicskenya@gmail.com" style="color:#b8860b;">medicalphysicskenya@gmail.com</a>.
+          <a href="mailto:medicalphysicskenya@gmail.com"
+             style="color:#b8860b;">medicalphysicskenya@gmail.com</a>.
         </p>
-        <p style="color:#0d1b2a;font-weight:600;">The AMPKen Team</p>
+        <p style="color:#0d1b2a;font-weight:600;margin-bottom:0;">The AMPKen Team</p>
       </div>
-      <div style="background:#f6f8fb;padding:1rem;text-align:center;font-size:.8rem;color:#7a8fa3;">
+      <div style="background:#f6f8fb;padding:1rem;text-align:center;
+                  font-size:.8rem;color:#7a8fa3;">
         © 2026 AMPKen · www.ampken.org
       </div>
     </div>
@@ -122,40 +122,43 @@ def send_registration_email(to_email, first_name):
           'Registration Confirmed — AMPKen 1st Medical Physics Conference 2026',
           html_body)
 
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         data = {
-            'timestamp':    datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-            'first_name':   request.form.get('first_name', '').strip(),
-            'last_name':    request.form.get('last_name', '').strip(),
-            'email':        request.form.get('email', '').strip(),
-            'phone':        request.form.get('phone', '').strip(),
-            'organisation': request.form.get('organisation', '').strip(),
-            'profession':   request.form.get('profession', '').strip(),
-            'attendance':   request.form.get('attendance', '').strip(),
-            'dietary':      request.form.get('dietary', '').strip(),
-            'message':      request.form.get('message', '').strip(),
+            'timestamp':            datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'first_name':           request.form.get('first_name', '').strip(),
+            'last_name':            request.form.get('last_name', '').strip(),
+            'email':                request.form.get('email', '').strip(),
+            'phone':                request.form.get('phone', '').strip(),
+            'organisation':         request.form.get('organisation', '').strip(),
+            'profession':           request.form.get('profession', '').strip(),
+            'attendance':           request.form.get('attendance', '').strip(),
+            'will_submit_abstract': request.form.get('will_submit_abstract', 'No').strip(),
+            'dietary':              request.form.get('dietary', '').strip(),
+            'message':              request.form.get('message', '').strip(),
         }
 
-        required = ['first_name', 'last_name', 'email', 'phone', 'organisation', 'profession', 'attendance']
+        required = ['first_name', 'last_name', 'email', 'phone',
+                    'organisation', 'profession', 'attendance']
         for field in required:
             if not data[field]:
                 flash('Please fill in all required fields.', 'error')
                 return render_template('register.html')
 
         save_registration(data)
-        send_registration_email(data['email'], data['first_name'])
+        send_registration_email(data['email'], data['first_name'], data['attendance'])
 
-        flash(f"Thank you {data['first_name']}! Your registration has been received. Check your email for confirmation.", 'success')
+        flash(
+            f"Thank you {data['first_name']}! Your registration has been received. "
+            f"Check your email for confirmation.",
+            'success'
+        )
         return redirect(url_for('register'))
 
     return render_template('register.html')
 
-
-# ── Abstract Submission ───────────────────────
-
+# ── Abstract Submission ──────────────────────
 ABSTRACTS_CSV = 'abstracts.csv'
 
 TOPIC_CATEGORIES = [
@@ -170,19 +173,19 @@ TOPIC_CATEGORIES = [
     'Other',
 ]
 
+ABSTRACT_FIELDS = [
+    'timestamp', 'first_name', 'last_name', 'email',
+    'phone', 'institution', 'co_authors',
+    'title', 'category', 'presentation', 'abstract'
+]
+
 def save_abstract(data):
     file_exists = os.path.isfile(ABSTRACTS_CSV)
     with open(ABSTRACTS_CSV, 'a', newline='', encoding='utf-8') as f:
-        fieldnames = [
-            'timestamp', 'first_name', 'last_name', 'email',
-            'phone', 'institution', 'co_authors',
-            'title', 'category', 'presentation', 'abstract'
-        ]
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer = csv.DictWriter(f, fieldnames=ABSTRACT_FIELDS)
         if not file_exists:
             writer.writeheader()
         writer.writerow(data)
-
 
 def send_abstract_email(to_email, first_name, title):
     html_body = f"""
@@ -198,26 +201,31 @@ def send_abstract_email(to_email, first_name, title):
         <p style="color:#3d4f61;line-height:1.7;">
           Thank you for submitting your abstract to the
           <strong>1st AMPKen Medical Physics Conference 2026</strong>.
-          We have received your submission and it is now under review.
+          Your submission is now under review by the scientific committee.
         </p>
-        <div style="background:#f6f8fb;border-left:4px solid #d4a017;padding:1rem 1.5rem;margin:1.5rem 0;border-radius:4px;">
+        <div style="background:#f6f8fb;border-left:4px solid #d4a017;
+                    padding:1rem 1.5rem;margin:1.5rem 0;border-radius:4px;">
           <p style="margin:0;color:#0d1b2a;font-weight:600;">Submitted Abstract</p>
-          <p style="margin:.5rem 0 0;color:#3d4f61;font-size:.9rem;line-height:1.7;">
+          <p style="margin:.5rem 0 0;color:#3d4f61;font-size:.9rem;line-height:1.8;">
             📄 <strong>Title:</strong> {title}
           </p>
         </div>
         <p style="color:#3d4f61;line-height:1.7;">
           The scientific committee will review all submissions and notify authors of the outcome.
-          For enquiries contact
-          <a href="mailto:medicalphysicskenya@gmail.com" style="color:#b8860b;">medicalphysicskenya@gmail.com</a>.
-        </p>
-        <p style="color:#3d4f61;line-height:1.7;">
-          Don't forget to also <a href="https://ampken.org/register" style="color:#b8860b;">register for the conference</a>
+          Don't forget to also
+          <a href="https://ampken.org/register"
+             style="color:#b8860b;">register for the conference</a>
           to secure your place.
         </p>
-        <p style="color:#0d1b2a;font-weight:600;">The AMPKen Scientific Committee</p>
+        <p style="color:#3d4f61;line-height:1.7;">
+          For enquiries contact
+          <a href="mailto:medicalphysicskenya@gmail.com"
+             style="color:#b8860b;">medicalphysicskenya@gmail.com</a>.
+        </p>
+        <p style="color:#0d1b2a;font-weight:600;margin-bottom:0;">The AMPKen Scientific Committee</p>
       </div>
-      <div style="background:#f6f8fb;padding:1rem;text-align:center;font-size:.8rem;color:#7a8fa3;">
+      <div style="background:#f6f8fb;padding:1rem;text-align:center;
+                  font-size:.8rem;color:#7a8fa3;">
         © 2026 AMPKen · www.ampken.org
       </div>
     </div>
@@ -225,7 +233,6 @@ def send_abstract_email(to_email, first_name, title):
     _send(to_email,
           'Abstract Received — AMPKen 1st Medical Physics Conference 2026',
           html_body)
-
 
 @app.route('/abstract', methods=['GET', 'POST'])
 def abstract():
@@ -244,29 +251,35 @@ def abstract():
             'abstract':     request.form.get('abstract', '').strip(),
         }
 
-        required = ['first_name', 'last_name', 'email', 'institution', 'title', 'category', 'presentation', 'abstract']
+        required = ['first_name', 'last_name', 'email', 'institution',
+                    'title', 'category', 'presentation', 'abstract']
         for field in required:
             if not data[field]:
                 flash('Please fill in all required fields.', 'error')
-                return render_template('abstract.html', categories=TOPIC_CATEGORIES)
+                return render_template('abstract.html',
+                                       categories=TOPIC_CATEGORIES,
+                                       form_data=data)
 
-        # Word count check (max 300 words)
         word_count = len(data['abstract'].split())
         if word_count > 300:
             flash(f'Abstract exceeds 300 words ({word_count} words). Please shorten it.', 'error')
-            return render_template('abstract.html', categories=TOPIC_CATEGORIES, form_data=data)
+            return render_template('abstract.html',
+                                   categories=TOPIC_CATEGORIES,
+                                   form_data=data)
 
         save_abstract(data)
         send_abstract_email(data['email'], data['first_name'], data['title'])
 
-        flash(f"Thank you {data['first_name']}! Your abstract has been submitted. Check your email for confirmation.", 'success')
+        flash(
+            f"Thank you {data['first_name']}! Your abstract has been submitted. "
+            f"Check your email for confirmation.",
+            'success'
+        )
         return redirect(url_for('abstract'))
 
     return render_template('abstract.html', categories=TOPIC_CATEGORIES)
 
-
-# ── Admin: view registrations ─────────────────
-
+# ── Admin: registrations ─────────────────────
 @app.route('/admin/registrations')
 def view_registrations():
     registrations = []
@@ -278,9 +291,7 @@ def view_registrations():
                            registrations=registrations,
                            total=len(registrations))
 
-
-# ── Admin: view abstracts ─────────────────────
-
+# ── Admin: abstracts ─────────────────────────
 @app.route('/admin/abstracts')
 def view_abstracts():
     abstracts = []
@@ -291,7 +302,6 @@ def view_abstracts():
     return render_template('admin_abstracts.html',
                            abstracts=abstracts,
                            total=len(abstracts))
-
 
 if __name__ == '__main__':
     app.run(debug=False)
