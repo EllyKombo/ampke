@@ -112,7 +112,7 @@
             display: inline-flex;
             align-items: center;
             gap: .35rem;
-            background: var(--gold-bright, #d4a017);
+            background: #d4a017;
             color: #0d1b2a;
             font-weight: 700;
             font-size: .72rem;
@@ -127,7 +127,7 @@
         }
 
         .ticker-register-btn:hover {
-            background: #fff;
+            background: #ffffff;
             color: #0d1b2a;
             animation-play-state: paused;
         }
@@ -159,11 +159,10 @@
             <div class="container ticker-inner">
                 <div class="ticker-track">
 
-                    <!-- Item 1: Conference with flickering Register Now -->
                     <div class="ticker-item">
                         <i class="fa-solid fa-bullhorn"
-                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i>
-                        1st AMPKen Medical Physics Conference — Nairobi, Nov 5–7, 2026
+                            style="margin-right:.5rem;color:#d4a017"></i>
+                        1st AMPKen Medical Physics Conference — Nairobi, Nov 5–7, 2026 &nbsp;
                         <a href="https://www.ampken.org/conference-register"
                            class="ticker-register-btn">
                             <i class="fa-solid fa-pen-to-square" style="font-size:.65rem;"></i>
@@ -171,25 +170,22 @@
                         </a>
                     </div>
 
-                    <!-- Item 2 -->
                     <div class="ticker-item">
                         <i class="fa-solid fa-bell"
-                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i>
+                            style="margin-right:.5rem;color:#d4a017"></i>
                         Membership renewal for the 2026 term is now open.
                     </div>
 
-                    <!-- Item 3 -->
                     <div class="ticker-item">
                         <i class="fa-solid fa-award"
-                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i>
+                            style="margin-right:.5rem;color:#d4a017"></i>
                         Join our professional network to access unique CPD opportunities.
                     </div>
 
-                    <!-- Item 4: Abstract submission -->
                     <div class="ticker-item">
                         <i class="fa-solid fa-file-lines"
-                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i>
-                        Call for Abstracts — Submit your scientific abstract for AMPKen 2026.
+                            style="margin-right:.5rem;color:#d4a017"></i>
+                        Call for Abstracts — Submit your scientific abstract for AMPKen 2026 &nbsp;
                         <a href="https://www.ampken.org/abstract"
                            class="ticker-register-btn">
                             <i class="fa-solid fa-paper-plane" style="font-size:.65rem;"></i>
@@ -200,8 +196,8 @@
                     <!-- Duplicated for seamless loop -->
                     <div class="ticker-item">
                         <i class="fa-solid fa-bullhorn"
-                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i>
-                        1st AMPKen Medical Physics Conference — Nairobi, Nov 5–7, 2026
+                            style="margin-right:.5rem;color:#d4a017"></i>
+                        1st AMPKen Medical Physics Conference — Nairobi, Nov 5–7, 2026 &nbsp;
                         <a href="https://www.ampken.org/conference-register"
                            class="ticker-register-btn">
                             <i class="fa-solid fa-pen-to-square" style="font-size:.65rem;"></i>
@@ -211,7 +207,7 @@
 
                     <div class="ticker-item">
                         <i class="fa-solid fa-bell"
-                            style="margin-right:.5rem;color:var(--gold-bright,#d4a017)"></i>
+                            style="margin-right:.5rem;color:#d4a017"></i>
                         Membership renewal for the 2026 term is now open.
                     </div>
 
@@ -234,7 +230,6 @@
                     <a href="{{ url_for('executive') }}" class="nav-link">Executive</a>
                     <a href="{{ url_for('membership') }}" class="nav-link">Membership</a>
                     <a href="{{ url_for('news') }}" class="nav-link">News</a>
-                    <a href="{{ url_for('conference_register') }}" class="nav-link">Conference</a>
                     <a href="{{ url_for('contacts') }}" class="nav-cta">Contact</a>
                 </nav>
 
@@ -291,12 +286,12 @@
                         Kindly follow us on our social media platforms for updates.
                     </p>
 
-                    <div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center">
-                        <a href="{{ url_for('conference_register') }}"
+                    <div style="display:flex;gap:.65rem;flex-wrap:wrap;align-items:center">
+                        <a href="https://www.ampken.org/conference-register"
                             style="display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.1rem;border-radius:var(--r-sm);background:var(--gold-bright);color:var(--navy);font-size:.82rem;font-weight:700;transition:all .2s">
                             <i class="fa-solid fa-pen-to-square"></i> Register Now
                         </a>
-                        <a href="{{ url_for('abstract_submit') }}"
+                        <a href="https://www.ampken.org/abstract"
                             style="display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.1rem;border-radius:var(--r-sm);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:.82rem;font-weight:500;transition:all .2s">
                             <i class="fa-solid fa-file-lines"></i> Submit Abstract
                         </a>
@@ -371,12 +366,12 @@
                 </div>
 
                 <div class="footer-col">
-                    <h4>Conference 2026</h4>
+                    <h4>Resources</h4>
                     <div class="footer-links">
-                        <a href="{{ url_for('conference_register') }}">Register for Conference</a>
-                        <a href="{{ url_for('abstract_submit') }}">Submit Abstract</a>
-                        <a href="{{ url_for('news') }}">Conference News</a>
-                        <a href="mailto:medicalphysicskenya@gmail.com?subject=Sponsorship Enquiry">Become a Sponsor</a>
+                        <a href="#">Constitution</a>
+                        <a href="#">CPD Programs</a>
+                        <a href="#">Publications</a>
+                        <a href="{{ url_for('contacts') }}">Contact Us</a>
                     </div>
                 </div>
 
