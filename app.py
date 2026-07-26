@@ -43,7 +43,7 @@ def contacts():
 
 # ── Shared email config ──────────────────────
 SMTP_USER = 'medicalphysicskenya@gmail.com'
-SMTP_PASS = os.environ.get('SMTP_PASS', '')   # set via: heroku config:set SMTP_PASS='yourpassword'
+SMTP_PASS = os.environ.get('SMTP_PASS', '')
 
 def _send(to_email, subject, html_body):
     """Send html email and bcc the org inbox."""
@@ -57,7 +57,7 @@ def _send(to_email, subject, html_body):
             server.starttls()
             server.login(SMTP_USER, SMTP_PASS)
             server.sendmail(SMTP_USER, to_email, msg.as_string())
-            server.sendmail(SMTP_USER, SMTP_USER, msg.as_string())  # copy to org inbox
+            server.sendmail(SMTP_USER, SMTP_USER, msg.as_string())
     except Exception as e:
         print(f"Email error: {e}")
 
@@ -99,7 +99,7 @@ def send_registration_email(to_email, first_name, category):
           <p style="margin:0;color:#0d1b2a;font-weight:600;">Conference Details</p>
           <p style="margin:.5rem 0 0;color:#3d4f61;font-size:.9rem;line-height:1.8;">
             📅 <strong>Date:</strong> November 5–7, 2026<br>
-            📍 <strong>Venue:</strong> Nairobi, Kenya<br>
+            📍 <strong>Venue:</strong> KUTRRH, Nairobi, Kenya<br>
             🎟️ <strong>Category:</strong> {category}<br>
             🌐 <strong>Website:</strong> www.ampken.org
           </p>
@@ -123,6 +123,7 @@ def send_registration_email(to_email, first_name, category):
           html_body)
 
 @app.route('/register', methods=['GET', 'POST'])
+@app.route('/conference-register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         data = {
@@ -187,7 +188,7 @@ def save_abstract(data):
             writer.writeheader()
         writer.writerow(data)
 
-def send_abstract_email(to_email, first_name, title):
+def send_abstract_email(to_email, first_name, title, abstract, category, presentation, institution, co_authors):
     html_body = f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
       <div style="background:#0d1b2a;padding:2rem;text-align:center;">
@@ -207,8 +208,16 @@ def send_abstract_email(to_email, first_name, title):
                     padding:1rem 1.5rem;margin:1.5rem 0;border-radius:4px;">
           <p style="margin:0;color:#0d1b2a;font-weight:600;">Submitted Abstract</p>
           <p style="margin:.5rem 0 0;color:#3d4f61;font-size:.9rem;line-height:1.8;">
-            📄 <strong>Title:</strong> {title}
+            📄 <strong>Title:</strong> {title}<br>
+            🏥 <strong>Institution:</strong> {institution}<br>
+            👥 <strong>Co-authors:</strong> {co_authors if co_authors else 'None'}<br>
+            🏷️ <strong>Category:</strong> {category}<br>
+            🎤 <strong>Presentation Type:</strong> {presentation}
           </p>
+          <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid #e2e8f0;">
+            <p style="margin:0 0 .5rem;color:#0d1b2a;font-weight:600;font-size:.9rem;">Abstract Text:</p>
+            <p style="margin:0;color:#3d4f61;font-size:.9rem;line-height:1.8;white-space:pre-wrap;">{abstract}</p>
+          </div>
         </div>
         <p style="color:#3d4f61;line-height:1.7;">
           The scientific committee will review all submissions and notify authors of the outcome.
@@ -268,7 +277,16 @@ def abstract():
                                    form_data=data)
 
         save_abstract(data)
-        send_abstract_email(data['email'], data['first_name'], data['title'])
+        send_abstract_email(
+            data['email'],
+            data['first_name'],
+            data['title'],
+            data['abstract'],
+            data['category'],
+            data['presentation'],
+            data['institution'],
+            data['co_authors']
+        )
 
         flash(
             f"Thank you {data['first_name']}! Your abstract has been submitted. "
